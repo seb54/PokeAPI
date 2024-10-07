@@ -1,0 +1,24 @@
+# Fichiers spécifiques à l'environnement de développement
+.vscode/
+.idea/
+
+# Fichiers Python compilés
+*.pyc
+__pycache__/
+
+# Environnements virtuels
+venv/
+env/
+
+# Logs et fichiers temporaires
+*.log
+*.tmp
+
+# Fichiers générés
+dist/
+build/
+*.egg-info/
+
+# Configuration spécifique aux systèmes d'exploitation
+.DS_Store
+*.swp
