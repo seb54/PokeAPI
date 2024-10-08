@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tournoi Pokémon</title>
+    <!-- Lien vers PicoCSS via CDN -->
+    <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@1.5.7/css/pico.min.css">
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <header>
+        <h1>Résultats du Tournoi Pokémon</h1>
+    </header>
+
+    <main>
+        {% for round in rounds %}
+            <article>
+                <h2>Tour {{ round.round_number }}</h2>
+                <div class="grid">
+                    {% for battle in round.battles %}
+                        <div class="card">
+                            <header>
+                                <h3>Combat {{ loop.index }}</h3>
+                            </header>
+                            <div class="grid">
+                                <div>
+                                    <img src="{{ battle.pokemon1_img }}" alt="{{ battle.pokemon1 }}" style="width: 100px;">
+                                    <p>{{ battle.pokemon1 }}</p>
+                                </div>
+                                <p>VS</p>
+                                <div>
+                                    <img src="{{ battle.pokemon2_img }}" alt="{{ battle.pokemon2 }}" style="width: 100px;">
+                                    <p>{{ battle.pokemon2 }}</p>
+                                </div>
+                            </div>
+                            <footer>
+                                <p>Vainqueur : <strong>{{ battle.winner }}</strong></p>
+                            </footer>
+                        </div>
+                    {% endfor %}
+                </div>
+            </article>
+        {% endfor %}
+
+        <article>
+            <h2>Champion : {{ champion['name'] }}</h2>
+            <img src="{{ champion['sprites']['front_default'] }}" alt="{{ champion['name'] }}" style="width: 150px;">
+        </article>
+    </main>
+
+    <footer>
+        <p>Fait avec PicoCSS</p>
+    </footer>
+</body>
+</html>
