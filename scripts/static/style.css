@@ -11,7 +11,17 @@ h1, h2, h3, h4, h5, h6 {
     color: #f0f0f0; /* Cyan lumineux pour un bon contraste */
     font-weight: bold;
 }
-
+header {
+    padding:0 !important;
+}
+main {
+    padding:0 !important;
+}
+article {
+    background-color: #1e1e1e;
+    padding: 0;
+    margin:0;
+}
 
 /* Flexbox grid for Pokémon list */
 .grid {
@@ -27,7 +37,7 @@ h1, h2, h3, h4, h5, h6 {
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     padding: 20px;
-    width: 150px;
+    width: 400px;
     text-align: center;
 }
 
@@ -37,4 +47,8 @@ h1, h2, h3, h4, h5, h6 {
     object-fit: cover;
     border-radius: 8px;
     margin-bottom: 10px;
+}
+
+button {
+    max-width:200px;
 }

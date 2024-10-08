@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tournoi Pokémon</title>
+    <!-- Lien vers GSAP via CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <!-- Lien vers PicoCSS via CDN -->
     <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@1.5.7/css/pico.min.css">
     <link rel="stylesheet" href="/static/style.css">
@@ -19,7 +21,7 @@
                 <h2>Tour {{ round.round_number }}</h2>
                 <div class="grid">
                     {% for battle in round.battles %}
-                        <div class="card">
+                        <div class="card pokemon-card">
                             <header>
                                 <h3>Combat {{ loop.index }}</h3>
                             </header>
@@ -50,7 +52,15 @@
     </main>
 
     <footer>
-        <p>Fait avec PicoCSS</p>
     </footer>
+    <script>
+        // Animation GSAP pour l'apparition des cartes de Pokémon
+        gsap.from(".pokemon-card", {
+            opacity: 0,
+            scale: 0.5,
+            duration: 0.5,
+            stagger: 0.2
+        });
+    </script>
 </body>
 </html>
