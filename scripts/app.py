@@ -36,28 +36,11 @@ def get_random_pokemons():
             pokemons.append(pokemon_data)
     return pokemons
 
-# Calculer la force d'un pokémon
-def calculate_pokemon_strength(pokemon):
-    stats = pokemon['stats']
-    total_strength = sum(stat['base_stat'] for stat in stats)
-    return total_strength
-
-# Simuler un combat et déterminer le vainqueur
-def simulate_battle(pokemon1, pokemon2):
-    strength1 = calculate_pokemon_strength(pokemon1)
-    strength2 = calculate_pokemon_strength(pokemon2)
-
-    if strength1 > strength2:
-        return pokemon1
-    elif strength2 > strength1:
-        return pokemon2
-    else:
-        return random.choice([pokemon1, pokemon2])
-
-# Route principale : Affichage du tournoi
+# Route principale : Affichage de la liste des combattants
 @app.route('/')
 def index():
-    return render_template('index.html')
+    pokemons = get_random_pokemons()  # Obtenons les Pokémon aléatoires
+    return render_template('combatants.html', pokemons=pokemons)
 
 # Route pour démarrer le tournoi
 @app.route('/tournament')

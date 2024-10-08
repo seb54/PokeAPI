@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liste des Pokémon Combattants</title>
+    <!-- Lien vers PicoCSS -->
+    <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@1.5.7/css/pico.min.css">
+    <!-- Lien vers GSAP via CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <header>
+        <h1>Pokémon Combattants</h1>
+    </header>
+
+    <main class="grid">
+        {% for pokemon in pokemons %}
+            <div class="card pokemon-card">
+                <img src="{{ pokemon.sprites.front_default }}" alt="{{ pokemon.name }}">
+                <p>{{ pokemon.name }}</p>
+            </div>
+        {% endfor %}
+    </main>
+
+    <footer>
+        <a href="/tournament">
+            <button>Démarrer le Tournoi</button>
+        </a>
+    </footer>
+
+    <script>
+        // Animation GSAP pour l'apparition des cartes de Pokémon
+        gsap.from(".pokemon-card", {
+            opacity: 0,
+            scale: 0.5,
+            duration: 0.5,
+            stagger: 0.2
+        });
+    </script>
+</body>
+</html>
