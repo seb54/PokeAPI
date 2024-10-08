@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request, redirect, url_for
 import random
 import requests
 
@@ -7,6 +7,9 @@ app = Flask(__name__)
 BASE_URL_API = "https://pokeapi.co/api/v2/"
 URL_POKEMON_API_BASE = "%spokemon" % BASE_URL_API
 NB_PARTICIPANTS = 16
+
+# Variable globale pour stocker les Pokémon sélectionnés
+selected_pokemons = []
 
 # Récupérer un pokémon aléatoire
 def get_random_pokemon_id(pokemons_count):
@@ -54,20 +57,8 @@ def simulate_battle(pokemon1, pokemon2):
     else:
         return random.choice([pokemon1, pokemon2])
 
-
-# Route principale : Affichage de la liste des combattants
-@app.route('/')
-def index():
-    pokemons = get_random_pokemons()  # Obtenons les Pokémon aléatoires
-    return render_template('combatants.html', pokemons=pokemons)
-
-
-
-
-# Route pour démarrer le tournoi
-@app.route('/tournament')
-def tournament():
-    pokemons = get_random_pokemons()  # Obtenons les Pokémon aléatoires
+# Simuler un tournoi et stocker les rounds
+def simulate_tournament(pokemons):
     rounds = []
     round_number = 1
 
@@ -98,10 +89,30 @@ def tournament():
         pokemons = winners
         round_number += 1
 
-    # Le dernier Pokémon restant est le champion
-    champion = pokemons[0]
+    return rounds, pokemons[0]  # Retourne les rounds et le champion
 
-    return render_template('tournament.html', rounds=rounds, champion=champion)
+# Route principale : Affichage de la liste des combattants
+@app.route('/')
+def index():
+    global selected_pokemons
+    selected_pokemons = get_random_pokemons()  # Obtenir et stocker les Pokémon aléatoires
+    return render_template('combatants.html', pokemons=selected_pokemons)
+
+# Route pour afficher un tour spécifique
+@app.route('/tournament/<int:round_number>')
+def tournament(round_number):
+    global selected_pokemons
+    rounds, champion = simulate_tournament(selected_pokemons.copy())  # On passe une copie des pokémons
+
+    # Si le numéro du tour est supérieur au nombre de tours, afficher le champion
+    if round_number > len(rounds):
+        return render_template('champion.html', champion=champion)
+
+    # Navigation : obtenir le tour en cours et les données nécessaires
+    current_round = rounds[round_number - 1]  # Les tours commencent à 1
+    total_rounds = len(rounds)
+
+    return render_template('tournament.html', round=current_round, round_number=round_number, total_rounds=total_rounds)
 
 if __name__ == '__main__':
     app.run(debug=True)

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Champion du Tournoi Pokémon</title>
+    <!-- Lien vers PicoCSS via CDN -->
+    <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@1.5.7/css/pico.min.css">
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <header>
+        <h1>Le Champion du Tournoi Pokémon</h1>
+    </header>
+
+    <main>
+        <article>
+            <h2>Champion : {{ champion['name'] }}</h2>
+            <img src="{{ champion['sprites']['front_default'] }}" alt="{{ champion['name'] }}" style="width: 150px;">
+            <p>Félicitations à <strong>{{ champion['name'] }}</strong> pour avoir remporté le tournoi !</p>
+        </article>
+    </main>
+
+    <footer>
+        <div class="pagination">
+            <a href="/">
+                <button>Recommencer un nouveau tournoi</button>
+            </a>
+        </div>
+    </footer>
+</body>
+</html>

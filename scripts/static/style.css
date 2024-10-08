@@ -8,9 +8,28 @@ body {
 
 /* Styling for the headers with better readability on a dark background */
 h1, h2, h3, h4, h5, h6 {
-    color: #f0f0f0; /* Cyan lumineux pour un bon contraste */
+    color: #f0f0f0;
     font-weight: bold;
 }
+h3 {
+    color:#666;
+    font-weight: normal;
+}
+
+p {
+    color: #f0f0f0;
+}
+
+.fa-bolt{
+    font-size:30px;
+    color: yellow;
+}
+
+.fa-trophy {
+    color:#fff;
+    font-size:50px;
+}
+
 header {
     padding:0 !important;
 }
@@ -22,7 +41,9 @@ article {
     padding: 0;
     margin:0;
 }
+footer {
 
+}
 /* Flexbox grid for Pokémon list */
 .grid {
     display: flex;
@@ -37,7 +58,7 @@ article {
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     padding: 20px;
-    width: 400px;
+    min-width:20vw;
     text-align: center;
 }
 
@@ -50,5 +71,50 @@ article {
 }
 
 button {
-    max-width:200px;
+    max-width:400px;
 }
+
+/* Flexbox container for the Pokémon images and "VS" text */
+.pokemon-battle {
+    display: flex;
+    justify-content: space-around; /* Space out the two Pokémon images */
+    align-items: center; /* Center the "VS" text vertically */
+    gap: 20px; /* Add some spacing between the images and the "VS" text */
+}
+
+/* Style for the "VS" text */
+.vs-text {
+    font-size: 18px;
+    color: #666; /* A color that pops */
+    margin: 0; /* Remove any margin to keep it centered */
+}
+
+/* Centrer la pagination */
+.pagination {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+/* Style des boutons de pagination */
+.pagination button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.pagination button:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+}
+
+.pagination button:hover:not(:disabled) {
+    background-color: #0056b3;
+}
+
+
