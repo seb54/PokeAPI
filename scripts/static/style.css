@@ -3,7 +3,11 @@ body {
     font-family: Arial, sans-serif;
     background-color: #1e1e1e;
     color: #f0f0f0;
-    padding: 20px;
+    padding: 0;
+}
+html {
+    background-color: #1e1e1e;
+
 }
 
 /* Styling for the headers with better readability on a dark background */
@@ -16,6 +20,35 @@ h3 {
     font-weight: normal;
 }
 
+/* Style pour les titres H1 */
+h1 {
+    font-family: 'Poppins', sans-serif; /* Police moderne et élégante */
+    font-size: 36px;
+    background: linear-gradient(to right, #ff7f50, #ff4500); /* Dégradé de couleurs */
+    color: transparent;
+    background-clip: text;
+    -webkit-background-clip: text; /* Pour Chrome/Safari */
+    text-align: center;
+    text-transform: uppercase; /* Mettre tout en majuscules */
+    letter-spacing: 2px; /* Espacement des lettres pour plus d'impact */
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3); /* Ombre portée légère */
+    margin-bottom: 20px; /* Espacement avec le reste du contenu */
+    animation: fadeIn 1s ease-in-out; /* Effet d'apparition en fondu */
+}
+
+/* Animation d'apparition en fondu */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(-20px); /* Part de plus haut */
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0); /* Arrive à sa position finale */
+    }
+}
+
+
 p {
     color: #f0f0f0;
 }
@@ -25,14 +58,25 @@ p {
     color: yellow;
 }
 
-.fa-trophy {
+.card .fa-trophy {
+    margin-top:50px;
     color:#fff;
     font-size:50px;
+}
+
+.trophy-icon {
+    font-size:100px !important;
+    display:block;
 }
 
 header {
     padding:0 !important;
 }
+header .img {
+    width:100%;
+    height:auto;
+}
+
 main {
     padding:0 !important;
 }
@@ -44,12 +88,23 @@ article {
 footer {
 
 }
+
+.banner {
+    background:url("/static/img/banner.png") no-repeat center center;
+    background-size:100% auto;
+    width:100%;
+    height:200px;
+}
 /* Flexbox grid for Pokémon list */
 .grid {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     gap: 20px;
+}
+
+.card {
+    overflow:hidden;
 }
 
 /* Styling each Pokémon card */
@@ -93,28 +148,38 @@ button {
 .pagination {
     display: flex;
     justify-content: center;
-    gap: 20px;
-    margin-top: 20px;
+    gap: 15px; /* Espacement entre les boutons */
+    margin-top: 30px;
 }
 
 /* Style des boutons de pagination */
 .pagination button {
-    background-color: #007bff;
+    background-color: #ff7f50;
     color: white;
     border: none;
     padding: 10px 20px;
-    border-radius: 5px;
+    border-radius: 30px; /* Boutons arrondis */
+    font-size: 16px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Animation fluide */
 }
 
+/* Changer la couleur au survol */
+.pagination button:hover:not(:disabled) {
+    background-color: #e75432;
+    transform: translateY(-3px); /* Légère élévation */
+}
+
+/* Style des boutons désactivés */
 .pagination button:disabled {
     background-color: #cccccc;
     cursor: not-allowed;
 }
 
-.pagination button:hover:not(:disabled) {
-    background-color: #0056b3;
+/* Icône à gauche dans les boutons */
+.pagination button i {
+    margin-right: 10px; /* Espacement entre l'icône et le texte */
 }
+
 
 

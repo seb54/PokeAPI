@@ -1,14 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tournoi Pokémon</title>
+    <!-- Lien vers PicoCSS -->
+    <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@1.5.7/css/pico.min.css">
     <!-- Lien vers GSAP via CDN -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <!-- Lien vers PicoCSS via CDN -->
-    <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@1.5.7/css/pico.min.css">
-    <!-- Lien vers Font Awesome CDN -->
+    <!-- Lien vers Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="/static/style.css">
 </head>
@@ -26,23 +26,21 @@
                             <h3>Combat {{ loop.index }}</h3>
                         </header>
                         <div class="pokemon-battle">
-                            <div>
+                            <div class="pokemon-left">
                                 <img src="{{ battle.pokemon1_img }}" alt="{{ battle.pokemon1 }}" style="width: 100px;">
                                 <p>{{ battle.pokemon1 }}</p>
                             </div>
-                            <p class="vs-text">
-                                <i class="fas fa-bolt vs-icon"></i>
-                            </p>
-                            <div>
+                            <i class="fas fa-bolt vs-icon"></i> <!-- Icône éclair -->
+                            <div class="pokemon-right">
                                 <img src="{{ battle.pokemon2_img }}" alt="{{ battle.pokemon2 }}" style="width: 100px;">
                                 <p>{{ battle.pokemon2 }}</p>
                             </div>
                         </div>
                         <footer>
                             <p>
-                                <i class="fas fa-trophy"></i><!-- Icône de trophée -->
+                                <i class="fas fa-trophy coupe"></i> <!-- Icône de trophée -->
                                 <br>
-                                <strong>{{ battle.winner }}</strong>
+                                <strong class="combat-vainqueur">{{ battle.winner }}</strong>
                             </p>
                         </footer>
                     </div>
@@ -53,37 +51,86 @@
         <div class="pagination">
             <!-- Bouton pour revenir au tour précédent, désactivé si c'est le premier tour -->
             {% if round_number > 1 %}
-                <a href="/tournament/{{ round_number - 1 }}">
-                    <button>Tour précédent</button>
-                </a>
+                    <button onclick="window.location.href='/tournament/{{ round_number - 1 }}'">
+                        <i class="fas fa-arrow-left"></i> <!-- Flèche gauche -->
+                        Tour précédent
+                    </button>
             {% else %}
-                <button disabled>Tour précédent</button>
+                <button disabled>
+                    <i class="fas fa-arrow-left"></i> <!-- Flèche gauche -->
+                    Tour précédent
+                </button>
             {% endif %}
 
             <!-- Bouton pour aller au tour suivant, désactivé si c'est le dernier tour -->
             {% if round_number < total_rounds %}
-                <a href="/tournament/{{ round_number + 1 }}">
-                    <button>Tour suivant</button>
-                </a>
+                    <button onclick="window.location.href='/tournament/{{ round_number + 1 }}'">
+                        Tour suivant
+                        <i class="fas fa-arrow-right"></i> <!-- Flèche droite -->
+                    </button>
             {% else %}
-                <a href="/tournament/{{ total_rounds + 1 }}">
-                    <button>Voir le champion</button>
-                </a>
+                    <button onclick="window.location.href='/tournament/{{ total_rounds + 1 }}'">
+                        Voir le champion
+                        <i class="fas fa-trophy"></i> <!-- Icône de trophée -->
+                    </button>
             {% endif %}
         </div>
+
     </main>
 
     <footer>
     </footer>
+
     <script>
-        // Animation GSAP pour l'apparition des cartes de Pokémon
+        // Animation pour les cartes Pokémon
         gsap.from(".pokemon-card", {
             opacity: 0,
             scale: 0.5,
             duration: 0.5,
             stagger: 0.2
         });
-    </script>
 
+        // Animation pour les Pokémon de gauche et de droite
+        gsap.from(".pokemon-left img", {
+            opacity: 0,
+            x: -100, // Vient de la gauche
+            duration: 0.5,
+            stagger: 0.2,
+            delay: 0.5 // Après l'animation des cartes
+        });
+
+        gsap.from(".pokemon-right img", {
+            opacity: 0,
+            x: 100, // Vient de la droite
+            duration: 0.5,
+            stagger: 0.2,
+            delay: 0.5 // Après l'animation des cartes
+        });
+
+        // Animation pour l'éclair
+        gsap.from(".vs-icon", {
+            opacity: 0,
+            scale: 0.5, // Commence avec un zoom réduit
+            duration: 0.5,
+            delay: 1 // Après les Pokémon
+        });
+
+        // Animation pour la coupe du vainqueur
+        gsap.from(".coupe", {
+            opacity: 0,
+            y: -20, // Vient de plus haut
+            duration: 0.5,
+            delay: 1.5 // Après l'éclair
+        });
+
+
+
+        // Animation pour le nom du vainqueur
+        gsap.from(".combat-vainqueur", {
+            opacity: 0,
+            duration: 0.5,
+            delay: 2 // Après l'éclair
+        });
+    </script>
 </body>
 </html>

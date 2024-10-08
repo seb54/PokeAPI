@@ -6,7 +6,11 @@
     <title>Champion du Tournoi Pokémon</title>
     <!-- Lien vers PicoCSS via CDN -->
     <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@1.5.7/css/pico.min.css">
+    <!-- Lien vers Font Awesome pour l'icône du trophée -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="/static/style.css">
+    <!-- GSAP via CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 </head>
 <body>
     <header>
@@ -14,19 +18,42 @@
     </header>
 
     <main>
-        <article>
+        <article class="card pokemon-card">
             <h2>Champion : {{ champion['name'] }}</h2>
-            <img src="{{ champion['sprites']['front_default'] }}" alt="{{ champion['name'] }}" style="width: 150px;">
+            <div class="pokemon-champion">
+                <i class="fas fa-trophy trophy-icon"></i> <!-- Icône de trophée --><br>
+                <img src="{{ champion['sprites']['front_default'] }}" alt="{{ champion['name'] }}" style="width: 150px;">
+            </div>
             <p>Félicitations à <strong>{{ champion['name'] }}</strong> pour avoir remporté le tournoi !</p>
         </article>
     </main>
 
     <footer>
         <div class="pagination">
-            <a href="/">
-                <button>Recommencer un nouveau tournoi</button>
-            </a>
+            <button onclick="window.location.href='/'">Recommencer un nouveau tournoi</button>
         </div>
     </footer>
+
+    <script>
+        // Animation pour l'apparition du champion et du trophée
+        gsap.from(".pokemon-card", {
+            opacity: 0,
+            scale: 0.5,
+            duration: 0.5,
+        });
+
+        gsap.from(".pokemon-champion img", {
+            opacity: 0,
+            duration: 0.8,
+            delay: 1
+        });
+
+        gsap.from(".trophy-icon", {
+            opacity: 0,
+            scale: 0.5, // Apparition en zoom
+            duration: 0.8,
+            delay: 0.3
+        });
+    </script>
 </body>
 </html>

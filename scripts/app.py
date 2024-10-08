@@ -6,7 +6,7 @@ app = Flask(__name__)
 
 BASE_URL_API = "https://pokeapi.co/api/v2/"
 URL_POKEMON_API_BASE = "%spokemon" % BASE_URL_API
-NB_PARTICIPANTS = 16
+NB_PARTICIPANTS = 8
 
 # Variable globale pour stocker les Pokémon sélectionnés
 selected_pokemons = []
