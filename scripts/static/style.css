@@ -34,6 +34,7 @@ h1 {
     text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3); /* Ombre portée légère */
     margin-bottom: 20px; /* Espacement avec le reste du contenu */
     animation: fadeIn 1s ease-in-out; /* Effet d'apparition en fondu */
+    padding:20px 0;
 }
 
 /* Animation d'apparition en fondu */
@@ -179,6 +180,11 @@ button {
 /* Icône à gauche dans les boutons */
 .pagination button i {
     margin-right: 10px; /* Espacement entre l'icône et le texte */
+}
+
+.winner {
+    margin:40px;
+    border-radius:20px;
 }
 
 
