@@ -6,6 +6,21 @@ body {
     padding: 20px;
 }
 
+article {
+    background:#1e1e1e;
+}
+
+h1, h2 {
+    color:#f1f1f1;
+}
+h3 {
+    color:yellow;
+}
+
+p {
+    color:#fff;
+}
+
 /* Grid layout using Flexbox */
 .grid {
     display: flex;
@@ -20,4 +35,6 @@ body {
     border-radius: 15px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     padding: 20px;
-    width: 400px; /*
+    width: 400px;
+    vertical-align:middle;
+}
